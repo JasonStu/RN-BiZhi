@@ -136,9 +136,10 @@ class Home extends Component {
   _onRefresh() {
     if (isLoadMore) {
       const {dispatch,Home} = this.props;
-      dispatch(home('', '', limit, isLoadMore, isRefreshing, isLoading));
       isLoadMore = false;
-            isRefreshing = true;
+      isRefreshing = true;
+      dispatch(home('', '', limit, isLoadMore, isRefreshing, isLoading));
+      
 
     }
   }
@@ -152,8 +153,6 @@ class Home extends Component {
       isLoadMore = true;
       isLoading = false;
       offest = homeList[homeList.length - 1].seq
-            
-
       dispatch(home(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
     })
 
@@ -165,7 +164,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     width: Common.window.width / 3,
-    height: Common.window.width / 3,
+    height: Common.window.width / 2,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -176,7 +175,7 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     width: Common.window.width / 3 - 10,
-    height: Common.window.width / 3 - 10,
+    height: Common.window.width / 2 - 10,
 
   },
   list: {

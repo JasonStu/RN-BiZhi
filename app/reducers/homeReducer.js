@@ -25,7 +25,7 @@ let homeReducer = (state = initialState, action) => {
 
             return Object.assign({}, state, {
                 HomeList: state.isLoadMore ? state.HomeList.concat(action.homeList) : action.homeList,
-                
+
                 isRefreshing: false,
                 isLoading: false,
             })
