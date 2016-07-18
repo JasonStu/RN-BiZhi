@@ -18,6 +18,7 @@ class App extends React.Component {
             <View style={{flex: 1}}>
                 <Navigator
                     initialRoute={{name: 'TabBarView', component: TabBarView}}
+                    
                     configureScene={()=>{
                         return  Navigator.SceneConfigs.PushFromRight;
                     }}

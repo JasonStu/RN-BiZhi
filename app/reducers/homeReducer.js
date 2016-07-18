@@ -10,7 +10,8 @@ const initialState = {
 };
 
 let homeReducer = (state = initialState, action) => {
-    console.log(action)
+    // console.log(action)
+    
     switch (action.type) {
         case types.FETCH_HOME_LIST:
             return Object.assign({}, state, {
@@ -21,7 +22,7 @@ let homeReducer = (state = initialState, action) => {
             
         case types.RECEIVE_HOME_LIST:
         
-            console.log(action);
+            // console.log(action);
 
             return Object.assign({}, state, {
                 HomeList: state.isLoadMore ? state.HomeList.concat(action.homeList) : action.homeList,

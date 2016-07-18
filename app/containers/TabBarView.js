@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import HomeContainer from '../containers/HomeContainer';
+import ClassContainer from '../containers/ClassContainer';
 
 const tabBarItems = [
     { title: '主页', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: HomeContainer },
-    { title: '列表', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: HomeContainer },
+    { title: '列表', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: ClassContainer },
     { title: '设置', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: HomeContainer },
 ]
 export default class TarBarView extends Component {

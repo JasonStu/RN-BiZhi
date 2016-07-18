@@ -12,7 +12,7 @@ import {
   ScrollView,
   Image,
   ListView,
-  TouchableHighlight,
+  TouchableOpacity,
   View,
   InteractionManager,
   RefreshControl,
@@ -46,19 +46,16 @@ class Home extends Component {
 
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
-      const {
-        dispatch
-      } = this.props;
+      const {dispatch} = this.props;
       dispatch(home(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
     })
   }
 
   render() {
-    const {
-      Home
-    } = this.props;
+    const { Home } = this.props;
+    console.log(this.props);
     let homeList = Home.HomeList;
-    console.log(Home);
+    // console.log(Home);
     // if (!this.state.loaded) {
     //   return this.renderLoadingView();
     // }
@@ -71,11 +68,11 @@ class Home extends Component {
         </View>
         {Home.isLoading ? <Loading /> :
           <ListView
-            dataSource={this.state.dataSource.cloneWithRows(homeList) }
+            dataSource={this.state.dataSource.cloneWithRows(homeList)}
             renderRow={this._renderRow}
             contentContainerStyle={styles.list}
             enableEmptySections={true}
-            initialListSize= {15}
+            initialListSize= {10}
             onScroll={this._onScroll}
             onEndReached={this._onEndReach.bind(this) }
             onEndReachedThreshold={10}
@@ -98,29 +95,37 @@ class Home extends Component {
   }
 
 
-  renderLoadingView() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          正在网络上获取电影数据……
-        </Text>
-      </View>
-    );
-  }
 
   _renderRow(rowDate) {
     // console.log('http://img.hb.aicdn.com/' + rowDate.file.key + '_fw236');
 
     return (
       <View style={styles.container}>
-        <Image
-          source={{ uri: 'http://img.hb.aicdn.com/' + rowDate.file.key + '_fw236' }}
-          style={styles.thumbnail}
-          />
+        <TouchableOpacity
+          activeOpacity={0.75}
+          onPress={this._onPressFeedItem.bind(this) }
+          >
+          <Image
+            source={{ uri: 'http://img.hb.aicdn.com/' + rowDate.file.key + '_fw236' }}
+            style={styles.thumbnail}
+            />
+        </TouchableOpacity>
       </View>
     );
   }
 
+  _onPressFeedItem() {
+    InteractionManager.runAfterInteractions(() => {
+      // this.props.navigator.push({
+      //     name: 'FeedDetail',
+      //     component: FeedDetail,
+      //     passProps: {
+      //         feed: feedItem,
+      //     }
+      // })
+      alert('跳转');
+    });
+  }
   _renderFooter() {
     const {Home} = this.props;
     if (Home.isLoadMore) {
@@ -135,11 +140,11 @@ class Home extends Component {
   // 下拉刷新
   _onRefresh() {
     if (isLoadMore) {
-      const {dispatch,Home} = this.props;
+      const {dispatch, Home} = this.props;
       isLoadMore = false;
       isRefreshing = true;
       dispatch(home('', '', limit, isLoadMore, isRefreshing, isLoading));
-      
+
 
     }
   }
@@ -148,7 +153,7 @@ class Home extends Component {
   _onEndReach() {
 
     InteractionManager.runAfterInteractions(() => {
-      const {dispatch,Home} = this.props;
+      const {dispatch, Home} = this.props;
       let homeList = Home.HomeList;
       isLoadMore = true;
       isLoading = false;

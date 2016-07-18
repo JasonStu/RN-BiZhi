@@ -8,17 +8,17 @@ export let home = (tag, offest, limit, isLoadMore, isRefreshing, isLoading) => {
     if (limit) URL += limit;
     offest ? URL += '&max=' + offest : URL += '&max=';
     tag ? URL += '&tag=' + decode_utf8(tag) : URL += '&tag='
-    console.log(URL)
+    // console.log(URL)
     return dispatch => {
         dispatch(feachHomeList(isLoadMore, isRefreshing, isLoading));
         return Util.gets(URL, (response) => {
-             console.log(response)
+            //  console.log(response)
             //  debugger
             dispatch(receiveHomeList(response.pins))
         }, (error) => {
             // console.log('加载首页数据error==>' + error);
             // // debugger
-            // dispatch(receiveHomeList([]));
+            dispatch(receiveHomeList([]));
         });
 
     }
