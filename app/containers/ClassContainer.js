@@ -14,7 +14,7 @@ class ClassContainer extends React.Component {
 }
 
 export default connect((state) => {
-    debugger
+    
     const { Class } = state;
     return {
         Class

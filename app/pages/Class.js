@@ -19,7 +19,7 @@ import Loading from '../common/Loading';
 
 let isLoading = true;
 
- class Class extends Component {
+class Class extends Component {
     constructor(props) {
         super(props);
         this._renderRow = this.renderRow.bind(this);
@@ -45,15 +45,15 @@ let isLoading = true;
                 <View style={styles.header}>
                     <Text style={styles.title}>分类</Text>
                 </View>
-               
+                {Class.isLoading ? <Loading /> :
                     <ListView
                         dataSource={this.state.dataSource.cloneWithRows(classList) }
                         renderRow={this._renderRow}
                         enableEmptySections={true}
                         initialListSize= {10}
-                        style={{height: Common.window.height - 64 ,backgroundColor:'red'}}
+                        style={{ height: Common.window.height - 54 - 64 }}
                         />
-                
+                }
             </View>
         );
 
@@ -62,14 +62,15 @@ let isLoading = true;
     renderRow(rowDate) {
         console.log(rowDate);
         return (
-            <View style = {styles.container}>
-                <TouchableOpacity
-                    activeOpacity={0.75}
-                 
-                    >
-                    <Text>你好</Text>
-                </TouchableOpacity>
-            </View>
+
+            <TouchableOpacity
+                activeOpacity={0.75}
+                >
+                <View style = {styles.container}>
+                    <Text>{rowDate.tag_name + ' 共' + rowDate.pin_count + '张'}</Text>
+                </View>
+
+            </TouchableOpacity>
         );
     }
 
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
 
     container: {
         width: Common.window.width,
-        height: 40,
+        height: 60,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',

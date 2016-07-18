@@ -6,7 +6,6 @@ import { combineReducers } from 'redux';
 import Home from './homeReducer';
 import Class from './classReducer';
 export default rootReducer = combineReducers({
-    Class,
     Home,
-    
+    Class,
 })

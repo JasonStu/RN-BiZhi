@@ -8,7 +8,8 @@ export let home = (tag, offest, limit, isLoadMore, isRefreshing, isLoading) => {
     if (limit) URL += limit;
     offest ? URL += '&max=' + offest : URL += '&max=';
     tag ? URL += '&tag=' + decode_utf8(tag) : URL += '&tag='
-    // console.log(URL)
+    console.log(URL)
+    
     return dispatch => {
         dispatch(feachHomeList(isLoadMore, isRefreshing, isLoading));
         return Util.gets(URL, (response) => {

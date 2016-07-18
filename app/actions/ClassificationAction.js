@@ -8,25 +8,25 @@ export let ClassAction = (isLoading) => {
     return dispatch => {
         dispatch(feachClassList(isLoading));
         return Util.get(URL,(response) => {
-            console.log(response.length);
+            console.log(response);
             dispatch(receiveClassList(response));
         },(error) => {
             console.log('分类数据error==>' + error);
-            // dispatch(receiveClassList([]));
+            dispatch(receiveClassList([]));
         });
     }
 }
 
 let feachClassList = (isLoading) => {
     return {
-        type:types.FETCH_CLASS_LIST,
-        isLoading:isLoading,
+        type: types.FETCH_CLASS_LIST,
+        isLoading: isLoading,
     }
 }
 
 let receiveClassList = (classList) => {
     return {
-        type:types.RECEIVE_CLASS_LIST,
-        classList:classList,
+        type: types.RECEIVE_CLASS_LIST,
+        classList: classList,
     }
 }
