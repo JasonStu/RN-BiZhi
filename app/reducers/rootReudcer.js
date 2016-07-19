@@ -5,7 +5,10 @@
 import { combineReducers } from 'redux';
 import Home from './homeReducer';
 import Class from './classReducer';
+import ClassDetial from './classDetialReducer';
+
 export default rootReducer = combineReducers({
     Home,
     Class,
+    ClassDetial,
 })

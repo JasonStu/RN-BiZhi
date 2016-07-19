@@ -3,13 +3,13 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-    HomeList: [],
+    ClassDetialList: [],
     isLoading: true,
     isLoadMore: false,
     isRefreshing: false,
 };
 
-let homeReducer = (state = initialState, action) => {
+let classDetialReducer = (state = initialState, action) => {
     // console.log(action)
     
     switch (action.type) {
@@ -25,7 +25,7 @@ let homeReducer = (state = initialState, action) => {
             // console.log(action);
 
             return Object.assign({}, state, {
-                HomeList: state.isLoadMore ? state.HomeList.concat(action.homeList) : action.homeList,
+                ClassDetialList: state.isLoadMore ? state.ClassDetialList.concat(action.homeList) : action.homeList,
 
                 isRefreshing: false,
                 isLoading: false,
@@ -33,7 +33,7 @@ let homeReducer = (state = initialState, action) => {
 
         case types.RESET_STATE:
             return Object.assign({},state,{
-                HomeList:[],
+                ClassDetialList:[],
                 isLoading:true,
             })
         default:
@@ -41,4 +41,4 @@ let homeReducer = (state = initialState, action) => {
     }
 }
 
-export default homeReducer;
+export default classDetialReducer;

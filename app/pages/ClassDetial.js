@@ -19,8 +19,9 @@ import {
 } from 'react-native';
 
 import {
-  home,
-} from '../actions/homeAction';
+  classDital,
+  resetState,
+} from '../actions/classDetialAction';
 import Common from '../common/common';
 import Loading from '../common/Loading';
 import LoadMoreFooter from '../common/LoadMoreFooter';
@@ -33,7 +34,7 @@ let tag = '';
 let isLoadMore = false;
 let isRefreshing = false;
 let isLoading = true;
-class Home extends Component {
+class ClassDetial extends Component {
 
   constructor(props) {
     super(props); //这一句不能省略，照抄即可
@@ -48,17 +49,25 @@ class Home extends Component {
 
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
+      const {dispatch,rowDate} = this.props;
+
+      tag = rowDate;
+      dispatch(classDital(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
+    })
+  }ß
+
+  componentWillUnmount() {
+    InteractionManager.runAfterInteractions(() => {
       const {dispatch} = this.props;
-      dispatch(home(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
+      dispatch(resetState());
     })
   }
 
   render() {
-    const { Home,rowDate } = this.props;
-     tag = rowDate;
+    const {ClassDetial} = this.props;
     console.log(this.props);
     // debugger
-    let homeList = Home.HomeList;
+    let homeList = ClassDetial.ClassDetialList;
     let titleName = tag ? tag : '主页';
     return (
       <View>
@@ -66,7 +75,7 @@ class Home extends Component {
           title= {titleName}
           leftIcon={tag ? 'angle-left' : null}
           />
-        {Home.isLoading ? <Loading /> :
+        {ClassDetial.isLoading ? <Loading /> :
           <ListView
             dataSource={this.state.dataSource.cloneWithRows(homeList) }
             renderRow={this._renderRow}
@@ -80,7 +89,7 @@ class Home extends Component {
             style={styles.listView}
             refreshControl={
               <RefreshControl
-                refreshing={Home.isRefreshing}
+                refreshing={ClassDetial.isRefreshing}
                 onRefresh={this._onRefresh.bind(this) }
                 title="正在加载中……"
                 color="#ccc"
@@ -127,8 +136,8 @@ class Home extends Component {
     });
   }
   _renderFooter() {
-    const {Home} = this.props;
-    if (Home.isLoadMore) {
+    const {ClassDetial} = this.props;
+    if (ClassDetial.isLoadMore) {
       return <LoadMoreFooter />
     }
   }
@@ -140,10 +149,10 @@ class Home extends Component {
   // 下拉刷新
   _onRefresh() {
     if (isLoadMore) {
-      const {dispatch, Home} = this.props;
+      const {dispatch, ClassDetial} = this.props;
       isLoadMore = false;
       isRefreshing = true;
-      dispatch(home('', '', limit, isLoadMore, isRefreshing, isLoading));
+      dispatch(classDital('', '', limit, isLoadMore, isRefreshing, isLoading));
 
 
     }
@@ -158,7 +167,7 @@ class Home extends Component {
       isLoadMore = true;
       isLoading = false;
       offest = homeList[homeList.length - 1].seq
-      dispatch(home(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
+      dispatch(classDital(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
     })
 
   }
@@ -203,4 +212,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = Home;
+module.exports = ClassDetial;

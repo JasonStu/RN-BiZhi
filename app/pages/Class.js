@@ -16,6 +16,8 @@ import {
 import {ClassAction} from '../actions/ClassificationAction.js';
 import Common from '../common/common';
 import Loading from '../common/Loading';
+import Detial from '../containers/ClassDetialContainer';
+import HeaderView from '../common/HeaderView';
 
 let isLoading = true;
 
@@ -42,9 +44,9 @@ class Class extends Component {
 
         return (
             <View>
-                <View style={styles.header}>
-                    <Text style={styles.title}>分类</Text>
-                </View>
+                <HeaderView
+                    title= '分类'
+                    />
                 {Class.isLoading ? <Loading /> :
                     <ListView
                         dataSource={this.state.dataSource.cloneWithRows(classList) }
@@ -65,6 +67,7 @@ class Class extends Component {
 
             <TouchableOpacity
                 activeOpacity={0.75}
+                onPress={this._onPressFeedItem.bind(this, rowDate.tag_name) }
                 >
                 <View style = {styles.container}>
                     <Text>{rowDate.tag_name + ' 共' + rowDate.pin_count + '张'}</Text>
@@ -73,7 +76,18 @@ class Class extends Component {
             </TouchableOpacity>
         );
     }
+    _onPressFeedItem(rowDate) {
+        InteractionManager.runAfterInteractions(() => {
+            this.props.navigator.push({
+                name: 'Detial',
+                component: Detial,
+                passProps: {
+                    rowDate: rowDate,
 
+                }
+            })
+        });
+    }
 
 }
 
@@ -89,7 +103,7 @@ const styles = StyleSheet.create({
     header: {
         marginTop: 20,
         height: 44,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
         flexDirection: 'row',
         backgroundColor: 'white',
