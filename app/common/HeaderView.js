@@ -11,6 +11,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Common from '../common/common';
 
 export default class Header extends React.Component {
 
@@ -38,6 +39,17 @@ export default class Header extends React.Component {
                 <Text key={'title'} style={styles.title}>{this.props.title}</Text>
             )
         }
+
+        // 自定义标题View
+        if (this.props.titleView != undefined) {
+            let Component = this.props.titleView;
+
+            NavigationBar.push(
+                <Text key={'titleView'} style={styles.titleView}>{this.props.titleView}</Text>
+            )
+        }
+
+
         return (
             <View style={styles.navigationBarContainer}>
                 {NavigationBar}
@@ -52,8 +64,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flexDirection: 'row',
         height: 44,
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
         borderBottomColor: '#ccc',
         borderBottomWidth: 0.5,
         backgroundColor: 'white'
@@ -61,39 +73,12 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 15,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    leftIcon: {
         marginLeft: 15,
     },
-
-    rightIcon: {
-        position: 'absolute',
-        right: 10,
-        top: 7
-    },
-
-    rightButton: {
-        position: 'absolute',
-        right: 10,
-        height: 44,
-        justifyContent: 'center',
-        flexDirection: 'row',
-    },
-
-    buttonTitleFont: {
-        color: 'white',
+    titleView: {
         fontSize: 15,
     },
-
-    rightMenu: {
-        position: 'absolute',
-        right: 10,
-        height: 44,
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'center'
+    leftIcon: {
+       left: -Common.window.width/2+40,
     },
 })

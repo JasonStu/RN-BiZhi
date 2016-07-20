@@ -16,6 +16,7 @@ import {
   View,
   InteractionManager,
   RefreshControl,
+  Navigator,
 } from 'react-native';
 
 import {
@@ -26,6 +27,7 @@ import Common from '../common/common';
 import Loading from '../common/Loading';
 import LoadMoreFooter from '../common/LoadMoreFooter';
 import HeaderView from '../common/HeaderView';
+import HomeDetial from './HomeDetial';
 
 
 let limit = 21;
@@ -48,43 +50,41 @@ class ClassDetial extends Component {
   }
 
   componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      const {dispatch,rowDate} = this.props;
-
+      const {dispatch, rowDate} = this.props
       tag = rowDate;
       dispatch(classDital(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
-    })
-  }ß
+  }
 
   componentWillUnmount() {
-    InteractionManager.runAfterInteractions(() => {
       const {dispatch} = this.props;
       dispatch(resetState());
-    })
   }
 
   render() {
     const {ClassDetial} = this.props;
+    debugger
     console.log(this.props);
     // debugger
-    let homeList = ClassDetial.ClassDetialList;
-    let titleName = tag ? tag : '主页';
+    let classDetialList = ClassDetial.ClassDetialList;
+    let titleName = tag;
     return (
       <View>
         <HeaderView
-          title= {titleName}
+          titleView= {titleName}
           leftIcon={tag ? 'angle-left' : null}
+          leftIconAction={() => this.props.navigator.pop() }
+ß
           />
         {ClassDetial.isLoading ? <Loading /> :
           <ListView
-            dataSource={this.state.dataSource.cloneWithRows(homeList) }
+            dataSource={this.state.dataSource.cloneWithRows(classDetialList) }
             renderRow={this._renderRow}
             contentContainerStyle={styles.list}
             enableEmptySections={true}
-            initialListSize= {10}
+            initialListSize= {12}
             onScroll={this._onScroll}
             onEndReached={this._onEndReach.bind(this) }
-            onEndReachedThreshold={10}
+            onEndReachedThreshold={12}
             renderFooter={this._renderFooter.bind(this) }
             style={styles.listView}
             refreshControl={
@@ -112,7 +112,7 @@ class ClassDetial extends Component {
       <View style={styles.container}>
         <TouchableOpacity
           activeOpacity={0.75}
-          onPress={this._onPressFeedItem.bind(this) }
+          onPress={this._onPressFeedItem.bind(this,rowDate) }
           >
           <Image
             source={{ uri: 'http://img.hb.aicdn.com/' + rowDate.file.key + '_fw236' }}
@@ -123,16 +123,16 @@ class ClassDetial extends Component {
     );
   }
 
-  _onPressFeedItem() {
+  _onPressFeedItem(rowDate) {
     InteractionManager.runAfterInteractions(() => {
-      // this.props.navigator.push({
-      //     name: 'FeedDetail',
-      //     component: FeedDetail,
-      //     passProps: {
-      //         feed: feedItem,
-      //     }
-      // })
-      alert('跳转');
+      this.props.navigator.push({
+          name: 'HomeDetial',
+          component: HomeDetial,
+          sceneConfig: Navigator.SceneConfigs.FloatFromBottom,
+          passProps: {
+              rowDate: rowDate,
+          }
+      })
     });
   }
   _renderFooter() {
@@ -162,11 +162,11 @@ class ClassDetial extends Component {
   _onEndReach() {
 
     InteractionManager.runAfterInteractions(() => {
-      const {dispatch, Home} = this.props;
-      let homeList = Home.HomeList;
+      const {dispatch, ClassDetial} = this.props;
+      let ClassDetialList = ClassDetial.ClassDetialList;
       isLoadMore = true;
       isLoading = false;
-      offest = homeList[homeList.length - 1].seq
+      offest = ClassDetialList[ClassDetialList.length - 1].seq
       dispatch(classDital(tag, offest, limit, isLoadMore, isRefreshing, isLoading));
     })
 
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   },
   listView: {
     backgroundColor: '#F5FCFF',
-    height: Common.window.height - 44 - 60 - 20,
+    height: Common.window.height - 44 - 20,
   },
   thumbnail: {
     width: Common.window.width / 3 - 10,

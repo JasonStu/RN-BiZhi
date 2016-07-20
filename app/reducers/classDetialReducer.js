@@ -23,7 +23,7 @@ let classDetialReducer = (state = initialState, action) => {
         case types.RECEIVE_CLASSDITAL_LIST:
         
             console.log(action);
-            debugger
+            // debugger
 
             return Object.assign({}, state, {
                 ClassDetialList: state.isLoadMore ? state.ClassDetialList.concat(action.calssDitalList) : action.calssDitalList,

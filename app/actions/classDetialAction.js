@@ -9,12 +9,12 @@ export let classDital = (tag, offest, limit, isLoadMore, isRefreshing, isLoading
     offest ? URL += '&max=' + offest : URL += '&max=';
     tag ? URL += '&tag=' + encode_utf8(tag) : URL += '&tag='
     console.log(URL)
-    debugger
+    // debugger
     return dispatch => {
         dispatch(feachClassDitalList(isLoadMore, isRefreshing, isLoading));
         return Util.get(URL, (response) => {
              console.log(response)
-             debugger
+            //  debugger
             dispatch(receiveClassDitalList(response.pins))
         }, (error) => {
             // console.log('加载首页数据error==>' + error);

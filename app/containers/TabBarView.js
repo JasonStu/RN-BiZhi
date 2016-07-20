@@ -12,10 +12,11 @@ import HomeContainer from '../containers/HomeContainer';
 import ClassContainer from '../containers/ClassContainer';
 
 const tabBarItems = [
-    { title: '主页', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: HomeContainer },
-    { title: '列表', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: ClassContainer },
-    { title: '设置', icon: () => <Image style={{ width: 40, height: 40 }} source={require('./imgs/artisanal.png') }/>, component: HomeContainer },
+    { title: '最新', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/home.png') }/>, component: HomeContainer },
+    { title: '分类', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/class.png') }/>, component: ClassContainer },
+    { title: '关于', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/me.png') }/>, component: HomeContainer },
 ]
+
 export default class TarBarView extends Component {
     constructor(props) {
         super(props);

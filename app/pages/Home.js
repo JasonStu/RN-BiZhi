@@ -16,6 +16,7 @@ import {
   View,
   InteractionManager,
   RefreshControl,
+  Navigator,
 } from 'react-native';
 
 import {
@@ -25,7 +26,7 @@ import Common from '../common/common';
 import Loading from '../common/Loading';
 import LoadMoreFooter from '../common/LoadMoreFooter';
 import HeaderView from '../common/HeaderView';
-
+import HomeDetial from './HomeDetial';
 
 let limit = 21;
 let offest = '';
@@ -59,11 +60,11 @@ class Home extends Component {
     console.log(this.props);
     // debugger
     let homeList = Home.HomeList;
-    let titleName = tag ? tag : '主页';
+    let titleName = '最新';
     return (
       <View>
         <HeaderView
-          title= {titleName}
+          titleView= {titleName}
           leftIcon={tag ? 'angle-left' : null}
           />
         {Home.isLoading ? <Loading /> :
@@ -103,7 +104,7 @@ class Home extends Component {
       <View style={styles.container}>
         <TouchableOpacity
           activeOpacity={0.75}
-          onPress={this._onPressFeedItem.bind(this) }
+          onPress={this._onPressFeedItem.bind(this,rowDate) }
           >
           <Image
             source={{ uri: 'http://img.hb.aicdn.com/' + rowDate.file.key + '_fw236' }}
@@ -114,16 +115,16 @@ class Home extends Component {
     );
   }
 
-  _onPressFeedItem() {
+  _onPressFeedItem(rowDate) {
     InteractionManager.runAfterInteractions(() => {
-      // this.props.navigator.push({
-      //     name: 'FeedDetail',
-      //     component: FeedDetail,
-      //     passProps: {
-      //         feed: feedItem,
-      //     }
-      // })
-      alert('跳转');
+      this.props.navigator.push({
+          name: 'HomeDetial',
+          component: HomeDetial,
+          sceneConfig: Navigator.SceneConfigs.FloatFromBottom,
+          passProps: {
+              rowDate: rowDate,
+          }
+      })
     });
   }
   _renderFooter() {

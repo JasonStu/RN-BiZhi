@@ -18,6 +18,8 @@ import Common from '../common/common';
 import Loading from '../common/Loading';
 import Detial from '../containers/ClassDetialContainer';
 import HeaderView from '../common/HeaderView';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 let isLoading = true;
 
@@ -45,7 +47,7 @@ class Class extends Component {
         return (
             <View>
                 <HeaderView
-                    title= '分类'
+                    titleView= '分类'
                     />
                 {Class.isLoading ? <Loading /> :
                     <ListView
@@ -68,9 +70,11 @@ class Class extends Component {
             <TouchableOpacity
                 activeOpacity={0.75}
                 onPress={this._onPressFeedItem.bind(this, rowDate.tag_name) }
+                style={styles.center}
                 >
                 <View style = {styles.container}>
                     <Text>{rowDate.tag_name + ' 共' + rowDate.pin_count + '张'}</Text>
+                   <Icon color="gray" size={30} name='angle-right'/>
                 </View>
 
             </TouchableOpacity>
@@ -83,7 +87,6 @@ class Class extends Component {
                 component: Detial,
                 passProps: {
                     rowDate: rowDate,
-
                 }
             })
         });
@@ -92,21 +95,24 @@ class Class extends Component {
 }
 
 const styles = StyleSheet.create({
-
-    container: {
-        width: Common.window.width,
-        height: 60,
+center:{
+   flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    header: {
-        marginTop: 20,
-        height: 44,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
+},
+    container: {
+        width: Common.window.width-20,
+        height: 50,
+        paddingLeft: 10,
+        
+        paddingRight: 10,
         flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         backgroundColor: 'white',
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 0.5,
+
     },
 
 });
