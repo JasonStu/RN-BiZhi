@@ -23,7 +23,7 @@ class App extends React.Component {
                         if (route.sceneConfig) {
                             return route.sceneConfig;
                         }
-                        return Navigator.SceneConfigs.PushFromRight;
+                        return Navigator.SceneConfigs.FloatFromRight;
                     } }
                     renderScene={(route, navigator) => {
                         let Component = route.component;

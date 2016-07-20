@@ -8,10 +8,10 @@ export let ClassAction = (isLoading) => {
     return dispatch => {
         dispatch(feachClassList(isLoading));
         return Util.get(URL,(response) => {
-            console.log(response);
+            // console.log(response);
             dispatch(receiveClassList(response));
         },(error) => {
-            console.log('分类数据error==>' + error);
+            // console.log('分类数据error==>' + error);
             dispatch(receiveClassList([]));
         });
     }

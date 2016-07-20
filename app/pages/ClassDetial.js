@@ -63,7 +63,7 @@ class ClassDetial extends Component {
   render() {
     const {ClassDetial} = this.props;
     debugger
-    console.log(this.props);
+    // console.log(this.props);
     // debugger
     let classDetialList = ClassDetial.ClassDetialList;
     let titleName = tag;

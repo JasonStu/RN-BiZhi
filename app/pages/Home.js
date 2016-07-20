@@ -57,7 +57,7 @@ class Home extends Component {
   render() {
     const { Home,rowDate } = this.props;
      tag = rowDate;
-    console.log(this.props);
+    // console.log(this.props);
     // debugger
     let homeList = Home.HomeList;
     let titleName = '最新';

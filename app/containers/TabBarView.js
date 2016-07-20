@@ -14,7 +14,7 @@ import ClassContainer from '../containers/ClassContainer';
 const tabBarItems = [
     { title: '最新', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/home.png') }/>, component: HomeContainer },
     { title: '分类', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/class.png') }/>, component: ClassContainer },
-    { title: '关于', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/me.png') }/>, component: HomeContainer },
+    // { title: '关于', icon: () => <Image style={{ width: 30, height: 30 }} source={require('./imgs/me.png') }/>, component: HomeContainer },
 ]
 
 export default class TarBarView extends Component {

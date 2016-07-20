@@ -8,12 +8,12 @@ export let classDital = (tag, offest, limit, isLoadMore, isRefreshing, isLoading
     if (limit) URL += limit;
     offest ? URL += '&max=' + offest : URL += '&max=';
     tag ? URL += '&tag=' + encode_utf8(tag) : URL += '&tag='
-    console.log(URL)
+    // console.log(URL)
     // debugger
     return dispatch => {
         dispatch(feachClassDitalList(isLoadMore, isRefreshing, isLoading));
         return Util.get(URL, (response) => {
-             console.log(response)
+            //  console.log(response)
             //  debugger
             dispatch(receiveClassDitalList(response.pins))
         }, (error) => {

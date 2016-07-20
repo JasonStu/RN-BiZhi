@@ -41,7 +41,7 @@ class Class extends Component {
     }
     render() {
         const {Class} = this.props;
-        console.log(this.props);
+        // console.log(this.props);
         let classList = Class.ClassDate;
 
         return (
@@ -64,7 +64,7 @@ class Class extends Component {
     }
 
     renderRow(rowDate) {
-        console.log(rowDate);
+        // console.log(rowDate);
         return (
 
             <TouchableOpacity

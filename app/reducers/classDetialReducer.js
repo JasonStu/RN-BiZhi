@@ -22,7 +22,7 @@ let classDetialReducer = (state = initialState, action) => {
             
         case types.RECEIVE_CLASSDITAL_LIST:
         
-            console.log(action);
+            // console.log(action);
             // debugger
 
             return Object.assign({}, state, {

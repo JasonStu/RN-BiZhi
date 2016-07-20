@@ -30,7 +30,7 @@ let Util = {
                  successCallback(JSON.parse(request.responseText))
 
             } else {
-                console.warn('error');
+                // console.warn('error');
             }
         };
 
