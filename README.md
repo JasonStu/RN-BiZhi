@@ -12,9 +12,9 @@ bizhi use RN and Redux
 - [ ] 性能优化
 
 ## 运行截图
-![逛吃](https://github.com/JasonStu/RN-BiZhi/blob/master/screenshot/1.png)
-![资讯详情](https://github.com/JasonStu/RN-BiZhi/blob/master/screenshot/2.png)
-![食物百科](https://github.com/JasonStu/RN-BiZhi/blob/master/screenshot/3.png)
+![最新](https://github.com/JasonStu/RN-BiZhi/blob/master/screenshot/1.png)
+![分类](https://github.com/JasonStu/RN-BiZhi/blob/master/screenshot/2.png)
+![详情页](https://github.com/JasonStu/RN-BiZhi/blob/master/screenshot/3.png)
 
 ## 运行
 ```
